@@ -1,12 +1,37 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-    <meta charset='UTF-8'>
-    <title>YouTube Caption Dashboard</title>
+	<meta charset='UTF-8'>
+	<title>YouTube Caption Dashboard</title>
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+	<link rel="stylesheet" type="text/css" href="styles/theme.css">
+	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+	<script defer data-main="scripts/main" src="scripts/require.js"></script>
 </head>
 <body>
-    
-    <script src='https://apis.google.com/js/api.js'></script>
-    <script src='dist/bundle.js'></script>
+	<div class="layout-transparent mdl-layout mdl-js-layout">
+		<header class="mdl-layout__header mdl-layout__header--transparent">
+			<div class="mdl-layout__header-row">
+				<span class="mdl-layout-title">Caption Dashboard</span>
+				<div class="mdl-layout-spacer"></div>
+				<nav class="mdl-navigation">
+					<a class="mdl-navigation__link" href="">About</a>
+					<a class="mdl-navigation__link" href="https://github.com/FreeCodeCamp/caption-dashboard">Github</a>
+				</nav>
+			</div>
+		</header>
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Title</span>
+			<nav class="mdl-navigation">
+				<a class="mdl-navigation__link" href="">Link</a>
+				<a class="mdl-navigation__link" href="">Link</a>
+				<a class="mdl-navigation__link" href="">Link</a>
+				<a class="mdl-navigation__link" href="">Link</a>
+			</nav>
+		</div>
+		<main class="mdl-layout__content">
+		</main>
+	</div>
 </body>
 </html>
