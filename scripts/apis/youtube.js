@@ -1,31 +1,36 @@
-console.log('YouTube module successfully started')
+define(function (require) {
+    "use strict"
 
-const config = {
-    apiKey: 'AIzaSyChV1Rsp9PgfPltS4DAu2GBLsUsgAY3cHc',
-    clientId: '101706023134-e3890ujf30bjqqr7vjatmulpq6cr58cn.apps.googleusercontent.com.apps.googleusercontent.com'
-}
+    var config = require('../config')
 
-const listCaptionsFromVideo = (videoId) => {
-    gapi.client.init({
-        'apiKey': config.apiKey,
-        'discoveryDocs': ['https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'],
-        'clientId': config.clientId,
-        'scope': 'profile'
-    }).then(() => {
-        return gapi.client.youtube.captions.list({
-            videoId,
-            part: 'id'
+    var exports = {}
+
+    /**
+     * @param {String} videoId
+     * @param {Function} cb
+     */
+    exports.listCaptionsFromVideo = function(videoId, cb) {
+        gapi.client.init({
+            'apiKey': config.apis.youtube.apiKey,
+            'discoveryDocs': config.apis.youtube.endpoint,
+            'clientId': config.apis.youtube.clientId,
+            'scope': 'profile'
         })
-    }).then(function(response) {
-        console.log(response.result)
-    }, function(reason) {
-        console.log('Error: ' + reason.result.error.message)
-    })
-}
+        .then(function() {
+            return gapi.client.youtube.captions.list({ videoId: videoId, part: 'id' })
+        })
+        .then(
+            function(response) {
+                cb(undefined, response)
+            },
+            function(err) {
+                cb(err, undefined)
+            }
+        )
+    }
+
+    return exports
+})
+
 
 gapi.load('client')
-
-setTimeout(() => {
-    listCaptionsFromVideo('v8kFT4I31es')
-    downloadCaptionFromCaptions()
-}, 500);
