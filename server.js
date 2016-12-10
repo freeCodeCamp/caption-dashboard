@@ -25,7 +25,7 @@ const respond = (res, code, contentType, body) => {
 http.createServer((req, res) => {
 
     const uri = url.parse(req.url).pathname
-    const filename = path.join(process.cwd(), uri)
+    let filename = path.join(process.cwd(), uri)
 
     fs.access(filename, fs.F_OK, err => {
 
