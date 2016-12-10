@@ -13,7 +13,7 @@ var port = process.argv[2] || 8080
 /**
  * @param {http.ServerResponse} res
  * @param {Number} code
- * @param {String} type
+ * @param {String} contentType
  * @param {String|Buffer} body
  */
 function respond(res, code, contentType, body) {
