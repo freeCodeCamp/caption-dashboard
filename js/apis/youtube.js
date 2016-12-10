@@ -31,6 +31,3 @@ define(function (require) {
 
     return exports
 })
-
-
-gapi.load('client')
