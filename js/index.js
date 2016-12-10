@@ -1,3 +1,3 @@
 "use strict"
-requirejs.config({ baseUrl: 'scripts' });
-requirejs(["helper/util"])
+requirejs.config({ baseUrl: 'js' });
+requirejs(["main"])
