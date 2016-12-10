@@ -2,10 +2,8 @@
   "name": "caption-dashboard",
   "version": "1.0.0",
   "description": "YouTube Caption management for any community",
-  "main": "dist/bundle.js",
-  "scripts": {
-    "dev": "webpack --watch"
-  },
+  "main": "scripts/main.js",
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/FreeCodeCamp/caption-dashboard.git"
@@ -15,12 +13,5 @@
   "bugs": {
     "url": "https://github.com/FreeCodeCamp/caption-dashboard/issues"
   },
-  "homepage": "https://github.com/FreeCodeCamp/caption-dashboard#readme",
-  "devDependencies": {
-    "babel-cli": "^6.18.0",
-    "babel-core": "^6.20.0",
-    "babel-loader": "^6.2.9",
-    "babel-preset-es2015": "^6.18.0",
-    "webpack": "^1.14.0"
-  }
+  "homepage": "https://github.com/FreeCodeCamp/caption-dashboard#readme"
 }
