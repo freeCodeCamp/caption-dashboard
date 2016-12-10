@@ -1,29 +1,28 @@
-define(function (require) {
+define(require => {
     "use strict"
 
-    var config = require('../config')
+    const config = require('../config')
 
-    var exports = {}
+    const exports = {}
 
     /**
      * @param {String} videoId
      * @param {Function} cb
      */
-    exports.listCaptionsFromVideo = function(videoId, cb) {
+    exports.listCaptionsFromVideo = (videoId, cb) => {
         gapi.client.init({
             'apiKey': config.apis.youtube.apiKey,
             'discoveryDocs': config.apis.youtube.endpoint,
             'clientId': config.apis.youtube.clientId,
             'scope': 'profile'
         })
-        .then(function() {
+        .then(() => {
             return gapi.client.youtube.captions.list({ videoId: videoId, part: 'id' })
         })
-        .then(
-            function(response) {
+        .then(response => {
                 cb(undefined, response)
             },
-            function(err) {
+            err => {
                 cb(err, undefined)
             }
         )

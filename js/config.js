@@ -1,4 +1,4 @@
-define(function (require) {
+define(require => {
     return {
         apis: {
             youtube: {

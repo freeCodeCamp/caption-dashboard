@@ -1,8 +1,8 @@
-define(function(require) {
+define(require => {
     "use strict"
 
-    var youtube = require("./apis/youtube")
-    var github = require("./apis/github")
+    const youtube = require("./apis/youtube")
+    const github = require("./apis/github")
 
     console.log(youtube)
     console.log(github)

@@ -2,11 +2,11 @@
 
 // based on: https://gist.github.com/ryanflorence/701407
 
-var http = require('http')
-var path = require('path')
-var url  = require('url')
-var fs   = require('fs')
-var mimes = require('./mimes')
+const http  = require('http'),
+      path  = require('path'),
+      url   = require('url'),
+      fs    = require('fs'),
+      mimes = require('./mimes')
 
 var port = process.argv[2] || 8080
 
@@ -16,18 +16,18 @@ var port = process.argv[2] || 8080
  * @param {String} contentType
  * @param {String|Buffer} body
  */
-function respond(res, code, contentType, body) {
+const respond = (res, code, contentType, body) => {
     res.writeHead(code, { 'Content-Type': contentType })
     res.write(body, code == 200 ? 'binary' : 'utf8')
     res.end()
 }
 
-http.createServer(function(req, res) {
+http.createServer((req, res) => {
 
-    var uri = url.parse(req.url).pathname
-    var filename = path.join(process.cwd(), uri)
+    const uri = url.parse(req.url).pathname
+    const filename = path.join(process.cwd(), uri)
 
-    fs.access(filename, fs.F_OK, function(err) {
+    fs.access(filename, fs.F_OK, err => {
 
         if (err) return respond(res, 404, 'text/plain', '404 Not Found\n')
         if (fs.statSync(filename).isDirectory()) filename += '/index.html'
@@ -36,8 +36,8 @@ http.createServer(function(req, res) {
 
             if (err) return respond(res, 500, 'text/plain', err + '\n')
 
-            var ext = path.parse(filename)['ext'].substr(1)
-            var mime = mimes[ext] ? mimes[ext] : 'text/plain'
+            const ext = path.parse(filename)['ext'].substr(1)
+            const mime = mimes[ext] ? mimes[ext] : 'text/plain'
 
             respond(res, 200, mime, contents)
         })

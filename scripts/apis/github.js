@@ -15,7 +15,7 @@ const getJSON = (url, cb) => {
 
 
 setTimeout(() => {
-    getJSON('https://api.github.com/repos/vmg/redcarpet/issues?state=closed', (res) => {
+    getJSON('https://api.github.com/repos/vmg/redcarpet/issues?state=closed', res => {
         console.log(res);
     })
 }, 500);

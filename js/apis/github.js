@@ -1,9 +1,9 @@
-define(function (require) {
+define(require => {
     "use strict"
 
-    var config = require('../config')
+    const config = require('../config')
 
-    var exports = {}
+    const exports = {}
 
     return exports
 })
