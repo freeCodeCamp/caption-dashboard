@@ -2,9 +2,7 @@ define(function (require) {
     return {
         apis: {
             youtube: {
-                endpoint: 'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest',
-                key:      'AIzaSyChV1Rsp9PgfPltS4DAu2GBLsUsgAY3cHc',
-                clientId: '101706023134-e3890ujf30bjqqr7vjatmulpq6cr58cn.apps.googleusercontent.com.apps.googleusercontent.com'
+                clientId: '410966524616-nvjc39rs4q6u6ghjpmh1vu1un32miiid.apps.googleusercontent.com'
             }
         }
     }

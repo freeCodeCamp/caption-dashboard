@@ -5,3 +5,20 @@
     your background is light. */
     color: white;
 }
+
+.thumbnail {
+    height: 110px;
+    margin-right: 10px;
+}
+
+.video-item {
+    border-bottom: 1px solid darkgray;
+}
+
+#videos-list {
+    width: 100%;
+}
+
+.mdl-card__supporting-text {
+    width: calc(100% - 32px);
+}
