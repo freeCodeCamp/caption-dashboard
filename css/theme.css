@@ -22,3 +22,17 @@
 .mdl-card__supporting-text {
     width: calc(100% - 32px);
 }
+
+.hidden {
+    width: 0;
+    height: 0;
+    position: absolute;
+    opacity: 0;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}

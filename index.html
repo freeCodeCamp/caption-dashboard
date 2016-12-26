@@ -33,7 +33,7 @@
         </nav>
     </div>
     <main class="mdl-layout__content">
-        <div class="mdl-grid">
+        <div class="mdl-grid" id="videos-container">
             <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--3-offset">
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">YouTube video's</h2>
@@ -42,6 +42,23 @@
                     <div class="mdl-list" id="videos-list">
 
                     </div>
+                </div>
+            </div>
+        </div>
+        <div class="mdl-grid hidden" id="edit-video-container">
+            <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--3-offset">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Video captions</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <h4 id="video-title" class="center"></h4>
+                    <img src="" class="thumbnail center" id="video-thumbnail">
+                    <div class="mdl-list" id="captions-list">
+
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" id="return-button">
+                        Return
+                    </button>
                 </div>
             </div>
         </div>

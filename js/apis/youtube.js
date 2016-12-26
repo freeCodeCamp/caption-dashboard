@@ -10,8 +10,8 @@ define(function (require) {
     function getVideos(videos, nextPageToken, cb) {
         var data = {
             part: "snippet",
-            channelId: "UC8butISFwT-Wl7EV0hUK0BQ",
-            key: "AIzaSyAdc33J85V6rs-VI6COLgzIwe4s5vhWY0Q",
+            channelId: config.apis.youtube.channelId,
+            key: config.apis.youtube.key,
             maxResults: 10
         }
         if (nextPageToken) {
@@ -23,30 +23,30 @@ define(function (require) {
             data: data
         }).done(function(data) {
             videos = videos.concat(data.items);
-            if (data.nextPageToken) getVideos(videos, data.nextPageToken, cb)
-            else cb(videos)
+            /*if (data.nextPageToken) getVideos(videos, data.nextPageToken, cb)
+            else */cb(videos)
+            //UNCOMMENT THE ABOVE TWO LINES AND CHANGE MAXRESULTS TO 50 TO LIST ALL FREECODECAMP VIDEO'S
         });
     }
 
-    /*getVideos([], null, function(videos) {
-        exports.videos = videos;
+    getVideos([], null, function(videos) {
+        exports.videos = videos
         videos.forEach(function(video) {
-            console.log(video);
             $("#videos-list").append(
                 '<div class="mdl-list__item video-item">' +
                     '<span class="mdl-list__item-primary-content">' +
                         '<img src="' + video.snippet.thumbnails.medium.url + '" class="thumbnail">' +
-                        '<span>' + video.snippet.title + '</span>' +
+                        '<a href="https://youtube.com/watch?v=' + video.id.videoId + '">' + video.snippet.title + '</a>' +
                     '</span>' +
                     '<span class="mdl-list__item-secondary-content">' +
-                        '<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">' +
+                        '<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect edit-video-' + video.id.videoId + '">' +
                             'Edit' +
                         '</button>' +
                     '</span>' +
                 '</div>'
-            );
-        });
-    })*/
+            )
+        })
+    })
 
     gapi.load('client', function() {
         gapi.client.init({
@@ -54,22 +54,6 @@ define(function (require) {
             'scope': 'profile'
         })
     })
-
-    /**
-     * @param {String} videoId
-     * @param {Function} cb
-     */
-    exports.listCaptionsFromVideo = function(videoId, cb) {
-        /*gapi.client.youtube.captions.list({ videoId: videoId, part: 'id' })
-            .then(
-                function(response) {
-                    cb(undefined, response)
-                },
-                function(err) {
-                    cb(err, undefined)
-                }
-            )*/
-    }
 
     exports.login = function() {
         gapi.auth2.getAuthInstance().signIn()
@@ -83,17 +67,30 @@ define(function (require) {
         return gapi.auth2.getAuthInstance().isSignedIn.get()
     }
 
-    /*exports.listVideosFromChannel = function(channelId, cb) {
-        gapi.client.youtube.captions.list({ videoId: videoId, part: 'id' })
-            .then(
-                function(response) {
-                    cb(undefined, response)
-                },
-                function(err) {
-                    cb(err, undefined)
-                }
-            )
-    }*/
+    exports.getCaptionsFromVideo = function(videoId, cb) {
+        var data = {
+            part: "snippet",
+            videoId: videoId,
+            key: config.apis.youtube.key,
+        }
+        $.ajax({
+            method: "GET",
+            url: "https://www.googleapis.com/youtube/v3/captions",
+            data: data
+        }).done(function(data) {
+            cb(data.items)
+        })
+    }
+
+    exports.getVideoById = function(videoId) {
+        var returnVideo
+        exports.videos.forEach(function(video) {
+            if (videoId === video.id.videoId) {
+                returnVideo = video
+            }
+        })
+        return returnVideo
+    }
 
     return exports
 })
