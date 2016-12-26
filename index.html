@@ -1,38 +1,91 @@
 <!DOCTYPE html>
 <html lang='en'>
 <head>
-	<meta charset='UTF-8'>
-	<title>YouTube Caption Dashboard</title>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-	<link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
-	<link rel="stylesheet" type="text/css" href="css/theme.css">
-	<script defer src='https://apis.google.com/js/api.js'></script>
-	<script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
-	<script defer data-main="js/index" src="js/require.js"></script>
+    <meta charset='UTF-8'>
+    <title>YouTube Caption Dashboard</title>
+    <link rel="icon" href="favicon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.2.1/material.indigo-pink.min.css">
+    <link rel="stylesheet" type="text/css" href="css/theme.css">
+    <script defer src='https://apis.google.com/js/api.js'></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script defer src="https://code.getmdl.io/1.2.1/material.min.js"></script>
+    <script defer data-main="js/index" src="js/require.js"></script>
 </head>
 <body>
-	<div class="layout-transparent mdl-layout mdl-js-layout">
-		<header class="mdl-layout__header mdl-layout__header--transparent">
-			<div class="mdl-layout__header-row">
-				<span class="mdl-layout-title">Caption Dashboard</span>
-				<div class="mdl-layout-spacer"></div>
-				<nav class="mdl-navigation">
-					<a class="mdl-navigation__link" href="">About</a>
-					<a class="mdl-navigation__link" href="https://github.com/FreeCodeCamp/caption-dashboard">Github</a>
-				</nav>
-			</div>
-		</header>
-		<div class="mdl-layout__drawer">
-			<span class="mdl-layout-title">Title</span>
-			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-				<a class="mdl-navigation__link" href="">Link</a>
-			</nav>
-		</div>
-		<main class="mdl-layout__content">
-		</main>
-	</div>
+<div class="layout-transparent mdl-layout mdl-js-layout">
+    <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+            <span class="mdl-layout-title">Caption Dashboard</span>
+            <div class="mdl-layout-spacer"></div>
+            <nav class="mdl-navigation">
+                <a class="mdl-navigation__link" href="">About</a>
+                <a class="mdl-navigation__link" href="https://github.com/FreeCodeCamp/caption-dashboard"
+                   target="_blank">Github</a>
+            </nav>
+        </div>
+    </header>
+    <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Title</span>
+        <nav class="mdl-navigation">
+            <a class="mdl-navigation__link" href="">About</a>
+            <a class="mdl-navigation__link" href="https://github.com/FreeCodeCamp/caption-dashboard" target="_blank">Github</a>
+        </nav>
+    </div>
+    <main class="mdl-layout__content">
+        <div class="mdl-grid" id="videos-container">
+            <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--3-offset">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">YouTube video's</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <div class="mdl-list" id="videos-list">
+                        <!--div class="mdl-list__item video-item">
+                            <span class="mdl-list__item-primary-content">
+                                <img src="https://i.ytimg.com/vi/xXLj5MbrI44/mqdefault.jpg" class="thumbnail">
+                                <ul class="video-item-strings">
+                                    <li><a href="https://youtube.com/watch?v=">Computer Basics 4: Decoding a Binary Number</a></li>
+                                    <li>English</li>
+                                    <li>English</li>
+                                    <li>English</li>
+                                    <li>English</li>
+                                    <li>English</li>
+                                    <li>English</li>
+                                    <li>English</li>
+                                    <li>English</li>
+                                    <li>English</li>
+                                    <li>English</li>
+                                </ul>
+                            </span>
+                            <span class="mdl-list__item-secondary-content">
+                                <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect edit-video-">
+                                    Edit
+                                </button>
+                            </span>
+                        </div>
+                    </div-->
+                </div>
+            </div>
+        </div>
+        <div class="mdl-grid hidden" id="edit-video-container">
+            <div class="mdl-card mdl-cell mdl-cell--6-col mdl-cell--3-offset">
+                <div class="mdl-card__title">
+                    <h2 class="mdl-card__title-text">Video captions</h2>
+                </div>
+                <div class="mdl-card__supporting-text">
+                    <h4 id="video-title" class="center"></h4>
+                    <img src="" class="thumbnail center" id="video-thumbnail">
+                    <div class="mdl-list" id="captions-list">
+
+                    </div>
+                    <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" id="return-button">
+                        Return
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
 </body>
 </html>
