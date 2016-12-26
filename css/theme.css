@@ -5,3 +5,39 @@
     your background is light. */
     color: white;
 }
+
+.thumbnail {
+    height: 110px;
+    margin-right: 10px;
+}
+
+.video-item {
+    border-bottom: 1px solid darkgray;
+}
+
+#videos-list {
+    width: 100%;
+}
+
+.mdl-card__supporting-text {
+    width: calc(100% - 32px);
+}
+
+.hidden {
+    width: 0;
+    height: 0;
+    position: absolute;
+    opacity: 0;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.video-item-strings {
+    list-style-type: none;
+    padding: 0;
+}
