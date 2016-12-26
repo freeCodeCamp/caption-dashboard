@@ -4,6 +4,15 @@ define(function (require) {
     var config = require('../config')
 
     var exports = {}
+    var languagesCbs = []
+
+    var languages = null
+    $.getJSON("https://raw.githubusercontent.com/JumpLink/country-list/master/all_languages.json", function(res) {
+        languages = res.en_GB
+        languagesCbs.forEach(function(cb) {
+            cb()
+        })
+    })
 
     var videos = []
 
@@ -32,19 +41,27 @@ define(function (require) {
     getVideos([], null, function(videos) {
         exports.videos = videos
         videos.forEach(function(video) {
-            $("#videos-list").append(
-                '<div class="mdl-list__item video-item">' +
-                    '<span class="mdl-list__item-primary-content">' +
-                        '<img src="' + video.snippet.thumbnails.medium.url + '" class="thumbnail">' +
-                        '<a href="https://youtube.com/watch?v=' + video.id.videoId + '">' + video.snippet.title + '</a>' +
-                    '</span>' +
-                    '<span class="mdl-list__item-secondary-content">' +
-                        '<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect edit-video-' + video.id.videoId + '">' +
-                            'Edit' +
-                        '</button>' +
-                    '</span>' +
-                '</div>'
-            )
+            exports.getCaptionsFromVideo(video.id.videoId, function(captions) {
+                captions = captions.map(function(caption) {
+                    return '<li><a href="https://www.youtube.com/timedtext_video?v=' + video.id.videoId + '">' + caption + '</a></li>'
+                })
+                $("#videos-list").append(
+                    '<div class="mdl-list__item video-item">' +
+                        '<span class="mdl-list__item-primary-content">' +
+                            '<img src="' + video.snippet.thumbnails.medium.url + '" class="thumbnail">' +
+                            '<ul class="video-item-strings">' +
+                                '<li><a href="https://youtube.com/watch?v=' + video.id.videoId + '">' + video.snippet.title + '</a></li>' +
+                                captions.join("") +
+                            '</ul>' +
+                        '</span>' +
+                        /*'<span class="mdl-list__item-secondary-content">' +
+                            '<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect edit-video-' + video.id.videoId + '">' +
+                                'Edit' +
+                            '</button>' +
+                        '</span>' +*/
+                    '</div>'
+                )
+            })
         })
     })
 
@@ -78,7 +95,19 @@ define(function (require) {
             url: "https://www.googleapis.com/youtube/v3/captions",
             data: data
         }).done(function(data) {
-            cb(data.items)
+            if (!languages) languagesCbs.push(function() {
+                prettyify()
+            })
+            else prettyify()
+            function prettyify() {
+                cb(data.items.map(function (caption) {
+                    caption.snippet.language = caption.snippet.language.replace("-", "_")
+                    var language = languages[caption.snippet.language]
+                    language = (language) ? language : "Unknown"
+                    var type = (caption.snippet.trackKind === "ASR") ? "Automatically generated" : ""
+                    return language + ((type) ? (" - " + type) : "") + ((caption.snippet.isDraft) ? " - draft" : "")
+                }))
+            }
         })
     }
 

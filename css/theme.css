@@ -36,3 +36,8 @@
     margin-right: auto;
     display: block;
 }
+
+.video-item-strings {
+    list-style-type: none;
+    padding: 0;
+}

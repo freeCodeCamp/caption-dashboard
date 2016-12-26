@@ -3,10 +3,6 @@ define(function(require) {
 
     var youtube = require("./apis/youtube")
     var github = require("./apis/github")
-    var languages = {}
-    $.getJSON("https://raw.githubusercontent.com/JumpLink/country-list/master/all_languages.json", function(res) {
-        languages = res.en_GB
-    })
 
     console.log(youtube)
     console.log(github)
@@ -48,14 +44,10 @@ define(function(require) {
 
         youtube.getCaptionsFromVideo(videoId, function(captions) {
             captions.forEach(function(caption) {
-                caption.snippet.language = caption.snippet.language.replace("-", "_")
-                var language = languages[caption.snippet.language]
-                language = (language) ? language : "Unknown"
-                var type = (caption.snippet.trackKind === "ASR") ? "Automatically generated" : ""
                 $("#captions-list").append(
                     '<div class="mdl-list__item video-item">' +
                         '<span class="mdl-list__item-primary-content">' +
-                            language + ((type) ? (" - " + type) : "") + ((caption.snippet.isDraft) ? " - draft" : "") +
+                            caption +
                         '</span>' +
                     '</div>'
                 )
