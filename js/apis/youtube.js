@@ -39,7 +39,7 @@ define(require => {
     getVideos([], null, videos => {
         exports.videos = videos
         videos.forEach(video => {
-            exports.getCaptionsFromVideo(video.id.videoId, caption => {
+            exports.getCaptionsFromVideo(video.id.videoId, captions => {
                 captions = captions.map(caption => {
                     return '<li><a href="https://www.youtube.com/timedtext_video?v=' + video.id.videoId + '">' + caption + '</a></li>'
                 })

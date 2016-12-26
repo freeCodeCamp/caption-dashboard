@@ -32,7 +32,7 @@ http.createServer((req, res) => {
         if (err) return respond(res, 404, 'text/plain', '404 Not Found\n')
         if (fs.statSync(filename).isDirectory()) filename += '/index.html'
 
-        fs.readFile(filename, 'binary', function(err, contents) {
+        fs.readFile(filename, 'binary', (err, contents) => {
 
             if (err) return respond(res, 500, 'text/plain', err + '\n')
 
